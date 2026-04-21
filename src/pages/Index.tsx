@@ -172,7 +172,28 @@ const Index = () => {
                   <Wishes />
                 </motion.section>
               )}
-            </AnimatePresence>
+
+              {view === "game" && (
+                <motion.section
+                  key="game"
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -30 }}
+                  transition={{ duration: 0.4 }}
+                  className="container max-w-4xl py-10"
+                >
+                  <div className="mb-8">
+                    <p className="font-hand text-2xl text-primary">🎂 a little birthday game</p>
+                    <h2 className="font-display text-4xl md:text-5xl font-semibold mt-1">
+                      try to catch the cake.
+                    </h2>
+                    <p className="text-muted-foreground mt-3 max-w-xl">
+                      it might run. don't take it personally.
+                    </p>
+                  </div>
+                  <CakeChase />
+                </motion.section>
+              )}
           </div>
 
           <footer className="py-6 text-center text-xs text-muted-foreground">
