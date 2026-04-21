@@ -3,8 +3,6 @@ import { motion } from "framer-motion";
 const hopes = [
   { emoji: "📚", text: "that uni keeps going well and you keep enjoying being there" },
   { emoji: "☀️", text: "more random good days — the kind you don't plan that just turn out great" },
-  { emoji: "🎳", text: "more bowling nights, ice skating, all the little stuff like that" },
-  { emoji: "🚲", text: "long bike rides with no real destination" },
   { emoji: "💬", text: "people around you that make you feel as easy to be around as you are" },
   { emoji: "🤍", text: "that twenty feels a little lighter than the year before it" },
 ];
