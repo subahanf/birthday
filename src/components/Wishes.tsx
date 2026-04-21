@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 
 const wishes = [
-  { emoji: "🏔️", text: "may every climb feel lighter than the last" },
-  { emoji: "☀️", text: "may your year be full of golden-hour kind of days" },
-  { emoji: "📚", text: "may uni keep opening doors you didn't know existed" },
-  { emoji: "🎒", text: "may every adventure remind you how brave you already are" },
-  { emoji: "🌊", text: "may you find calm in the chaos and chaos in the calm" },
-  { emoji: "✨", text: "may 20 be the softest, boldest year yet" },
+  { emoji: "📚", text: "that uni keeps treating you well — and that you keep crushing it like you have been" },
+  { emoji: "☀️", text: "more random good days. the kind you don't plan, that just turn out great" },
+  { emoji: "🎳", text: "at least one more bowling night where you actually beat me (kidding)" },
+  { emoji: "🚲", text: "long bike rides with no real destination" },
+  { emoji: "💬", text: "that the people around you make you feel as easy to be around as you are" },
+  { emoji: "✨", text: "twenty being a year that feels lighter than the last one" },
 ];
 
 export const Wishes = () => {
