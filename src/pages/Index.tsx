@@ -1,176 +1,191 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowLeft } from "lucide-react";
 import { GiftUnwrap } from "@/components/GiftUnwrap";
 import { PhotoGallery } from "@/components/PhotoGallery";
-import { AdventureMap } from "@/components/AdventureMap";
 import { Wishes } from "@/components/Wishes";
-import { FuturePlans } from "@/components/FuturePlans";
-import mountainHero from "@/assets/mountain-hero.jpg";
 
 const RECIPIENT = "Hajira";
-const LETTER = `Happy Birthday Hajira!!! It's crazy how time actually flies by so quickly. It's already been almost more than a year since you went back. But I am super happy for you that you are doing great in uni and are attending one of the best uni's there.
 
-You will do great in the future, I have no doubt about it. Don't let anyone or anything get to you, especially the "lads" there 😂.
+const LETTER = `Happy birthday, Hajira.
 
-I am always here if you ever need anything. Call or msg anytime.
+It's honestly wild how fast time has gone — it's already been more than a year since you went back, and somehow it still feels recent. I'm really proud of how well you're doing at uni. You ended up at one of the best places you could be, and you're handling it like it was always meant to be yours.
 
-Happy 20th birthday Hajira ♥ — enjoy your day and enjoy your official non-teen years.`;
+You're going to do great. I genuinely don't worry about that part. Just don't let people get to you — especially the lads over there 😂. You know yourself better than any of them ever will.
 
-const Section = ({
-  index,
-  kicker,
-  title,
-  children,
-}: {
-  index: string;
-  kicker: string;
+And you know I'm always here. Call, text, voice note at 3am, whatever — door's open.
+
+Happy 20th ♥ enjoy your day, and welcome to your official non-teen years.`;
+
+type View = "menu" | "memories" | "letter" | "wishes";
+
+interface Card {
+  id: View;
   title: string;
-  children: React.ReactNode;
-}) => (
-  <section className="container max-w-6xl py-20 md:py-28">
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      className="mb-10 md:mb-14"
-    >
-      <div className="flex items-baseline gap-4 mb-3">
-        <span className="font-hand text-3xl text-primary">{index}</span>
-        <span className="h-px flex-1 bg-border" />
-        <span className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
-          {kicker}
-        </span>
-      </div>
-      <h2 className="font-display text-4xl md:text-6xl font-semibold leading-[1.05]">
-        {title}
-      </h2>
-    </motion.div>
-    {children}
-  </section>
-);
+  subtitle: string;
+  emoji: string;
+}
+
+const cards: Card[] = [
+  { id: "memories", title: "our memories", subtitle: "a little photo wall", emoji: "📸" },
+  { id: "letter", title: "a note for you", subtitle: "read this part properly", emoji: "✉️" },
+  { id: "wishes", title: "wishes for 20", subtitle: "six small ones", emoji: "✨" },
+];
 
 const Index = () => {
   const [opened, setOpened] = useState(false);
+  const [view, setView] = useState<View>("menu");
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-paper">
       {!opened && <GiftUnwrap recipientName={RECIPIENT} onOpen={() => setOpened(true)} />}
 
-      {/* HERO */}
-      <section className="relative min-h-screen flex items-end overflow-hidden">
-        <img
-          src={mountainHero}
-          alt="Mountains at golden hour"
-          width={1920}
-          height={1080}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+      {opened && (
+        <div className="min-h-screen flex flex-col">
+          {/* Top bar */}
+          <header className="container max-w-5xl pt-8 pb-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              {view !== "menu" ? (
+                <button
+                  onClick={() => setView("menu")}
+                  className="flex items-center gap-2 text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  back to gift
+                </button>
+              ) : (
+                <span className="font-hand text-2xl text-primary">for hajira ♥</span>
+              )}
+            </div>
+            <span className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
+              twenty
+            </span>
+          </header>
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={opened ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.4, duration: 0.9 }}
-          className="container max-w-6xl relative z-10 pb-20 md:pb-32"
-        >
-          <p className="font-hand text-3xl md:text-4xl text-primary mb-3 animate-wiggle inline-block">
-            ✦ chapter zero ✦
-          </p>
-          <h1 className="font-display text-6xl md:text-9xl font-bold leading-[0.9] mb-6">
-            Happy 20th,
-            <br />
-            <span className="italic text-primary">Hajira</span>.
-          </h1>
-          <p className="max-w-xl text-lg md:text-xl text-foreground/80 leading-relaxed">
-            an unwrappable little gift — built from memories, mountains we've
-            climbed (and some we haven't yet), and a long list of wishes for
-            the year ahead.
-          </p>
-          <div className="mt-8 flex items-center gap-3 text-sm text-muted-foreground">
-            <span className="w-8 h-px bg-foreground/30" />
-            <span>scroll to keep unwrapping</span>
+          <div className="flex-1 flex items-center">
+            <AnimatePresence mode="wait">
+              {view === "menu" && (
+                <motion.section
+                  key="menu"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className="container max-w-5xl py-10"
+                >
+                  <div className="text-center mb-12">
+                    <p className="font-hand text-3xl text-primary mb-2">happy birthday,</p>
+                    <h1 className="font-display text-6xl md:text-8xl font-bold leading-[0.95]">
+                      Hajira <span className="italic text-primary">·</span> 20
+                    </h1>
+                    <p className="text-muted-foreground mt-4 max-w-md mx-auto">
+                      pick a piece to open. you can come back anytime.
+                    </p>
+                  </div>
+
+                  <div className="grid md:grid-cols-3 gap-5 md:gap-6">
+                    {cards.map((c, i) => (
+                      <motion.button
+                        key={c.id}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.15 + i * 0.1 }}
+                        whileHover={{ y: -6, rotate: i % 2 === 0 ? -1 : 1 }}
+                        whileTap={{ scale: 0.97 }}
+                        onClick={() => setView(c.id)}
+                        className="paper-card p-8 text-left group"
+                      >
+                        <div className="text-4xl mb-5">{c.emoji}</div>
+                        <h2 className="font-display text-2xl font-semibold mb-1 group-hover:text-primary transition-colors">
+                          {c.title}
+                        </h2>
+                        <p className="font-hand text-xl text-muted-foreground">
+                          {c.subtitle}
+                        </p>
+                        <div className="mt-6 text-xs uppercase tracking-widest text-primary/70 flex items-center gap-2">
+                          open
+                          <span className="h-px w-6 bg-primary/40 group-hover:w-12 transition-all" />
+                        </div>
+                      </motion.button>
+                    ))}
+                  </div>
+                </motion.section>
+              )}
+
+              {view === "memories" && (
+                <motion.section
+                  key="memories"
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -30 }}
+                  transition={{ duration: 0.4 }}
+                  className="container max-w-6xl py-10"
+                >
+                  <div className="mb-10">
+                    <p className="font-hand text-2xl text-primary">📸 our memories</p>
+                    <h2 className="font-display text-4xl md:text-5xl font-semibold mt-1">
+                      a little photo wall.
+                    </h2>
+                    <p className="text-muted-foreground mt-3 max-w-xl">
+                      tap a frame to drop in a photo — bowling, prom, skating, whatever. make it yours.
+                    </p>
+                  </div>
+                  <PhotoGallery />
+                </motion.section>
+              )}
+
+              {view === "letter" && (
+                <motion.section
+                  key="letter"
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -30 }}
+                  transition={{ duration: 0.4 }}
+                  className="container max-w-3xl py-10"
+                >
+                  <div className="relative paper-card tape p-8 md:p-12">
+                    <div className="absolute top-4 right-6 stamp rounded-full px-3 py-1 text-xs uppercase tracking-widest text-primary/70">
+                      hajira · 20
+                    </div>
+                    <p className="font-hand text-3xl md:text-4xl text-primary mb-6">
+                      hey hajira,
+                    </p>
+                    <div className="font-display text-lg md:text-xl leading-relaxed whitespace-pre-line text-foreground/90">
+                      {LETTER}
+                    </div>
+                    <p className="font-hand text-3xl mt-8 text-foreground/80">
+                      — always here.
+                    </p>
+                  </div>
+                </motion.section>
+              )}
+
+              {view === "wishes" && (
+                <motion.section
+                  key="wishes"
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -30 }}
+                  transition={{ duration: 0.4 }}
+                  className="container max-w-4xl py-10"
+                >
+                  <div className="mb-10">
+                    <p className="font-hand text-2xl text-primary">✨ wishes</p>
+                    <h2 className="font-display text-4xl md:text-5xl font-semibold mt-1">
+                      six small ones for twenty.
+                    </h2>
+                  </div>
+                  <Wishes />
+                </motion.section>
+              )}
+            </AnimatePresence>
           </div>
-        </motion.div>
-      </section>
 
-      {/* CHAPTER 1 — GALLERY */}
-      <div className="bg-paper border-y border-border/50">
-        <Section index="01" kicker="memory roll" title="moments worth keeping.">
-          <p className="font-display text-lg text-muted-foreground italic mb-10 max-w-2xl">
-            tap any frame to drop in a photo — make it yours.
-          </p>
-          <PhotoGallery />
-        </Section>
-      </div>
-
-      {/* CHAPTER 2 — MAP */}
-      <Section index="02" kicker="the map" title="places we've been.">
-        <p className="font-display text-lg text-muted-foreground italic mb-10 max-w-2xl">
-          a little cartography of our adventures. hover the pins.
-        </p>
-        <AdventureMap />
-      </Section>
-
-      {/* CHAPTER 3 — LETTER */}
-      <div className="bg-paper border-y border-border/50">
-        <Section index="03" kicker="from me, to you" title="a proper note.">
-          <motion.div
-            initial={{ opacity: 0, y: 30, rotate: -1 }}
-            whileInView={{ opacity: 1, y: 0, rotate: -0.6 }}
-            viewport={{ once: true }}
-            className="relative paper-card tape p-8 md:p-14 max-w-3xl mx-auto"
-          >
-            <div className="absolute top-4 right-6 stamp rounded-full px-3 py-1 text-xs uppercase tracking-widest text-primary/70">
-              for hajira · 20
-            </div>
-            <p className="font-hand text-3xl md:text-4xl text-primary mb-6">
-              dear hajira,
-            </p>
-            <div className="font-display text-lg md:text-xl leading-relaxed whitespace-pre-line text-foreground/90">
-              {LETTER}
-            </div>
-            <p className="font-hand text-3xl mt-8 text-foreground/80">— always rooting for you.</p>
-          </motion.div>
-        </Section>
-      </div>
-
-      {/* CHAPTER 4 — WISHES */}
-      <Section index="04" kicker="six wishes" title="for the year ahead.">
-        <Wishes />
-      </Section>
-
-      {/* CHAPTER 5 — FUTURE */}
-      <div className="bg-paper border-y border-border/50">
-        <Section index="05" kicker="the to-adventure list" title="things we still owe each other.">
-          <p className="font-display text-lg text-muted-foreground italic mb-10 max-w-2xl">
-            consider these IOUs. the wild is calling.
-          </p>
-          <FuturePlans />
-        </Section>
-      </div>
-
-      {/* OUTRO */}
-      <section className="container max-w-3xl py-28 text-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-        >
-          <p className="font-hand text-4xl text-primary mb-4">that's the whole gift ✦</p>
-          <h2 className="font-display text-4xl md:text-6xl font-semibold mb-6 leading-tight">
-            here's to twenty,
-            <br />
-            and every adventure after.
-          </h2>
-          <p className="text-muted-foreground">
-            with love — made just for you.
-          </p>
-        </motion.div>
-      </section>
-
-      <footer className="py-8 text-center text-xs text-muted-foreground border-t border-border/50">
-        crafted with care · for hajira's 20th
-      </footer>
+          <footer className="py-6 text-center text-xs text-muted-foreground">
+            made just for you ♥
+          </footer>
+        </div>
+      )}
     </main>
   );
 };

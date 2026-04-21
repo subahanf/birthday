@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Upload, X, Camera } from "lucide-react";
+import { X, Camera } from "lucide-react";
 
 interface PhotoSlot {
   id: string;
@@ -10,12 +10,12 @@ interface PhotoSlot {
 }
 
 const initialSlots: PhotoSlot[] = [
-  { id: "1", caption: "that one hike", rotation: -3 },
-  { id: "2", caption: "golden hour", rotation: 2 },
-  { id: "3", caption: "best day", rotation: -1 },
-  { id: "4", caption: "remember this?", rotation: 4 },
-  { id: "5", caption: "adventures", rotation: -2 },
-  { id: "6", caption: "you, glowing", rotation: 3 },
+  { id: "1", caption: "prom night", rotation: -3 },
+  { id: "2", caption: "bowling (i won)", rotation: 2 },
+  { id: "3", caption: "ice skating", rotation: -1 },
+  { id: "4", caption: "bike rides", rotation: 4 },
+  { id: "5", caption: "random day", rotation: -2 },
+  { id: "6", caption: "good times", rotation: 3 },
 ];
 
 export const PhotoGallery = () => {
