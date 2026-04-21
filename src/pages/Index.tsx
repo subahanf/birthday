@@ -7,17 +7,9 @@ import { Wishes } from "@/components/Wishes";
 
 const RECIPIENT = "Hajira";
 
-const LETTER = `Happy birthday, Hajira.
+const LETTER = `Happy Birthday Hajira!!! It's crazy time actually flies by so quickly. It's already been almost more than a year since u went back. But I am super happy for you that you are doing great in uni and are attending one of the best uni's there. You will do great in the future, I have no doubt about it. Don't let anyone or anything get to you, especially the "lads" there 😂. I am always here if you ever need anything. Call or msg anytime. Happy 20th birthday Hajira ♥, enjoy your day and enjoy your offical non-teen years.`;
 
-It's honestly wild how fast time has gone — it's already been more than a year since you went back, and somehow it still feels recent. I'm really proud of how well you're doing at uni. You ended up at one of the best places you could be, and you're handling it like it was always meant to be yours.
-
-You're going to do great. I genuinely don't worry about that part. Just don't let people get to you — especially the lads over there 😂. You know yourself better than any of them ever will.
-
-And you know I'm always here. Call, text, voice note at 3am, whatever — door's open.
-
-Happy 20th ♥ enjoy your day, and welcome to your official non-teen years.`;
-
-type View = "menu" | "memories" | "letter" | "wishes";
+type View = "menu" | "memories" | "letter" | "hopes";
 
 interface Card {
   id: View;
@@ -29,7 +21,7 @@ interface Card {
 const cards: Card[] = [
   { id: "memories", title: "our memories", subtitle: "a little photo wall", emoji: "📸" },
   { id: "letter", title: "a note for you", subtitle: "read this part properly", emoji: "✉️" },
-  { id: "wishes", title: "wishes for 20", subtitle: "six small ones", emoji: "✨" },
+  { id: "hopes", title: "things i hope for you", subtitle: "small ones, real ones", emoji: "🤍" },
 ];
 
 const Index = () => {
