@@ -194,6 +194,7 @@ const Index = () => {
                   <CakeChase />
                 </motion.section>
               )}
+            </AnimatePresence>
           </div>
 
           <footer className="py-6 text-center text-xs text-muted-foreground">
