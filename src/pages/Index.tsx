@@ -152,9 +152,9 @@ const Index = () => {
                 </motion.section>
               )}
 
-              {view === "wishes" && (
+              {view === "hopes" && (
                 <motion.section
-                  key="wishes"
+                  key="hopes"
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -30 }}
@@ -162,9 +162,9 @@ const Index = () => {
                   className="container max-w-4xl py-10"
                 >
                   <div className="mb-10">
-                    <p className="font-hand text-2xl text-primary">✨ wishes</p>
+                    <p className="font-hand text-2xl text-primary">🤍 things i hope for you</p>
                     <h2 className="font-display text-4xl md:text-5xl font-semibold mt-1">
-                      six small ones for twenty.
+                      small ones, real ones.
                     </h2>
                   </div>
                   <Wishes />
