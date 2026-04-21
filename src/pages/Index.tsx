@@ -4,12 +4,13 @@ import { ArrowLeft } from "lucide-react";
 import { GiftUnwrap } from "@/components/GiftUnwrap";
 import { PhotoGallery } from "@/components/PhotoGallery";
 import { Wishes } from "@/components/Wishes";
+import { CakeChase } from "@/components/CakeChase";
 
 const RECIPIENT = "Hajira";
 
 const LETTER = `Happy Birthday Hajira!!! It's crazy time actually flies by so quickly. It's already been almost more than a year since u went back. But I am super happy for you that you are doing great in uni and are attending one of the best uni's there. You will do great in the future, I have no doubt about it. Don't let anyone or anything get to you, especially the "lads" there 😂. I am always here if you ever need anything. Call or msg anytime. Happy 20th birthday Hajira ♥, enjoy your day and enjoy your offical non-teen years.`;
 
-type View = "menu" | "memories" | "letter" | "hopes";
+type View = "menu" | "memories" | "letter" | "hopes" | "game";
 
 interface Card {
   id: View;
@@ -22,6 +23,7 @@ const cards: Card[] = [
   { id: "memories", title: "our memories", subtitle: "a little photo wall", emoji: "📸" },
   { id: "letter", title: "a note for you", subtitle: "read this part properly", emoji: "✉️" },
   { id: "hopes", title: "things i hope for you", subtitle: "small ones, real ones", emoji: "🤍" },
+  { id: "game", title: "catch the cake", subtitle: "if you can. good luck.", emoji: "🎂" },
 ];
 
 const Index = () => {
@@ -75,7 +77,7 @@ const Index = () => {
                     </p>
                   </div>
 
-                  <div className="grid md:grid-cols-3 gap-5 md:gap-6">
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
                     {cards.map((c, i) => (
                       <motion.button
                         key={c.id}
@@ -168,6 +170,28 @@ const Index = () => {
                     </h2>
                   </div>
                   <Wishes />
+                </motion.section>
+              )}
+
+              {view === "game" && (
+                <motion.section
+                  key="game"
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -30 }}
+                  transition={{ duration: 0.4 }}
+                  className="container max-w-4xl py-10"
+                >
+                  <div className="mb-8">
+                    <p className="font-hand text-2xl text-primary">🎂 a little birthday game</p>
+                    <h2 className="font-display text-4xl md:text-5xl font-semibold mt-1">
+                      try to catch the cake.
+                    </h2>
+                    <p className="text-muted-foreground mt-3 max-w-xl">
+                      it might run. don't take it personally.
+                    </p>
+                  </div>
+                  <CakeChase />
                 </motion.section>
               )}
             </AnimatePresence>
