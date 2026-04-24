@@ -15,7 +15,7 @@ type View = "menu" | "memories" | "letter" | "hopes" | "game";
 interface Card {
   id: View;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   emoji: string;
 }
 
