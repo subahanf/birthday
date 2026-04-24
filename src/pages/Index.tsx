@@ -51,9 +51,7 @@ const Index = () => {
                 <span className="font-hand text-2xl text-primary">for hajira ♥</span>
               )}
             </div>
-            <span className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
-              twenty
-            </span>
+            
           </header>
 
           <div className="flex-1 flex items-center">
@@ -70,7 +68,7 @@ const Index = () => {
                   <div className="text-center mb-12">
                     <p className="font-hand text-3xl text-primary mb-2">happy birthday,</p>
                     <h1 className="font-display text-6xl md:text-8xl font-bold leading-[0.95]">
-                      Hajira <span className="italic text-primary">·</span> 20
+                      Hajira <span className="italic text-primary"></span>
                     </h1>
                     <p className="text-muted-foreground mt-4 max-w-md mx-auto">
                       pick a piece to open.
@@ -121,7 +119,7 @@ const Index = () => {
                       a little photo wall.
                     </h2>
                     <p className="text-muted-foreground mt-3 max-w-xl">
-                      tap a frame to drop in a photo — bowling, prom, skating, whatever. make it yours.
+                      — bowling, prom, skating, ...
                     </p>
                   </div>
                   <PhotoGallery />
@@ -142,7 +140,7 @@ const Index = () => {
                       hajira · 20
                     </div>
                     <p className="font-hand text-3xl md:text-4xl text-primary mb-6">
-                      hey hajira,
+                      hajira,
                     </p>
                     <div className="font-display text-lg md:text-xl leading-relaxed whitespace-pre-line text-foreground/90">
                       {LETTER}
@@ -198,7 +196,7 @@ const Index = () => {
           </div>
 
           <footer className="py-6 text-center text-xs text-muted-foreground">
-            made just for you ♥
+            Enjoy ur birthday ♥
           </footer>
         </div>
       )}

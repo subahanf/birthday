@@ -1,6 +1,9 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { X, Camera } from "lucide-react";
+import imgMap from "@/assets/adventure-map.jpg";
+import imgHero from "@/assets/mountain-hero.jpg";
+import imgGift from "@/assets/gift-box.png";
+import prom from "@/assets/prom2.png";
 
 interface PhotoSlot {
   id: string;
@@ -10,31 +13,16 @@ interface PhotoSlot {
 }
 
 const initialSlots: PhotoSlot[] = [
-  { id: "1", caption: "prom night", rotation: -3 },
-  { id: "2", caption: "bowling (i won)", rotation: 2 },
-  { id: "3", caption: "ice skating", rotation: -1 },
-  { id: "4", caption: "bike rides", rotation: 4 },
-  { id: "5", caption: "random day", rotation: -2 },
-  { id: "6", caption: "good times", rotation: 3 },
+  { id: "1", caption: "prom night", rotation: -3, src: prom },
+  { id: "2", caption: "bowling (i won)", rotation: 2, src: imgHero },
+  { id: "3", caption: "ice skating", rotation: -1, src: imgGift },
+  { id: "4", caption: "bike rides", rotation: 4, src: imgMap },
+  { id: "5", caption: "random day", rotation: -2, src: imgHero },
+  { id: "6", caption: "good times", rotation: 3, src: imgGift },
 ];
 
 export const PhotoGallery = () => {
-  const [slots, setSlots] = useState<PhotoSlot[]>(initialSlots);
-  const inputRefs = useRef<Record<string, HTMLInputElement | null>>({});
-
-  const handleUpload = (id: string, file: File) => {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      setSlots((prev) =>
-        prev.map((s) => (s.id === id ? { ...s, src: e.target?.result as string } : s))
-      );
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const handleRemove = (id: string) => {
-    setSlots((prev) => prev.map((s) => (s.id === id ? { ...s, src: undefined } : s)));
-  };
+  const [slots] = useState<PhotoSlot[]>(initialSlots);
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-10">
@@ -48,37 +36,9 @@ export const PhotoGallery = () => {
           whileHover={{ scale: 1.05, rotate: 0, zIndex: 10 }}
           className="relative paper-card p-3 pb-12 group"
         >
-          <input
-            ref={(el) => (inputRefs.current[slot.id] = el)}
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={(e) => {
-              const file = e.target.files?.[0];
-              if (file) handleUpload(slot.id, file);
-            }}
-          />
-
           <div className="aspect-square bg-muted/60 overflow-hidden relative">
-            {slot.src ? (
-              <>
-                <img src={slot.src} alt={slot.caption} className="w-full h-full object-cover" />
-                <button
-                  onClick={() => handleRemove(slot.id)}
-                  className="absolute top-2 right-2 bg-background/90 rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity"
-                  aria-label="Remove photo"
-                >
-                  <X className="w-3.5 h-3.5" />
-                </button>
-              </>
-            ) : (
-              <button
-                onClick={() => inputRefs.current[slot.id]?.click()}
-                className="w-full h-full flex flex-col items-center justify-center gap-2 text-muted-foreground hover:text-primary hover:bg-muted/30 transition-colors"
-              >
-                <Camera className="w-8 h-8" strokeWidth={1.5} />
-                <span className="text-xs font-medium">add photo</span>
-              </button>
+            {slot.src && (
+              <img src={slot.src} alt={slot.caption} className="w-full h-full object-cover" />
             )}
           </div>
 
