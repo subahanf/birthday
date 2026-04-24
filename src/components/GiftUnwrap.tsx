@@ -44,7 +44,7 @@ export const GiftUnwrap = ({ onOpen, recipientName }: GiftUnwrapProps) => {
         transition={{ delay: 0.2 }}
         className="text-center mb-6 px-6 relative z-10"
       >
-        <p className="font-hand text-2xl text-primary/80">a little something for</p>
+        <p className="font-hand text-2xl text-primary/80">Happy Birthday</p>
         <h1 className="font-display text-5xl md:text-7xl font-bold text-foreground mt-2">
           {recipientName}
         </h1>

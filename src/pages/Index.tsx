@@ -20,9 +20,9 @@ interface Card {
 }
 
 const cards: Card[] = [
-  { id: "memories", title: "our memories", subtitle: "a little photo wall", emoji: "📸" },
-  { id: "letter", title: "a note for you", subtitle: "read this part properly", emoji: "✉️" },
-  { id: "hopes", title: "things i hope for you", subtitle: "small ones, real ones", emoji: "🤍" },
+  { id: "memories", title: "our memories", emoji: "📸" },
+  { id: "letter", title: "a note for you", emoji: "✉️" },
+  { id: "hopes", title: "things i hope for you", emoji: "🤍" },
   { id: "game", title: "catch the cake", subtitle: "if you can. good luck.", emoji: "🎂" },
 ];
 
@@ -73,7 +73,7 @@ const Index = () => {
                       Hajira <span className="italic text-primary">·</span> 20
                     </h1>
                     <p className="text-muted-foreground mt-4 max-w-md mx-auto">
-                      pick a piece to open. you can come back anytime.
+                      pick a piece to open.
                     </p>
                   </div>
 
