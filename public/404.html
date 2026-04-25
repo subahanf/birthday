@@ -1,18 +1,14 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="refresh" content="0;URL=/birthday/" />
-    <script>
-      // Preserve path by converting to hash route and redirecting to index
-      try {
-        const pathname = location.pathname.replace(/^\/+/, "");
-        const hash = pathname ? '#' + pathname + location.search + location.hash : location.hash || '';
-        location.replace('/birthday/' + hash);
-      } catch (e) {
-        location.replace('/birthday/');
-      }
-    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy 20th, Hajira </title>
+    <meta name="author" content="Lovable" />
+    <link rel="icon" href="/favicon.ico" />
   </head>
-  <body></body>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
