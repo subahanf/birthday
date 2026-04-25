@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import imgMap from "@/assets/adventure-map.jpg";
 import imgHero from "@/assets/mountain-hero.jpg";
 import imgGift from "@/assets/gift-box.png";
-import prom from "@/assets/prom2.png";
+import prom from "@/assets/prom2.jpeg";
 
 interface PhotoSlot {
   id: string;
