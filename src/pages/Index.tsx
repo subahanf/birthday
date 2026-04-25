@@ -8,7 +8,7 @@ import { CakeChase } from "@/components/CakeChase";
 
 const RECIPIENT = "Hajira";
 
-const LETTER = `Happy Birthday Hajira!!! It's crazy time actually flies by so quickly. It's already been almost more than a year since u went back. But I am super happy for you that you are doing great in uni and are attending one of the best uni's there. You will do great in the future, I have no doubt about it. Don't let anyone or anything get to you, especially the "lads" there 😂. I am always here if you ever need anything. Call or msg anytime. Happy 20th birthday Hajira ♥, enjoy your day and enjoy your offical non-teen years.`;
+const LETTER = `Happy Birthday Hajira!!! It's crazy how time actually flies by so quickly. It's already been almost more than a year since u went back. But I am super happy for you that you are doing great in uni and are attending one of the best uni's there. You will do great in the future and in life, I have no doubt about it. Don't let anyone or anything get to you, especially the "lads" there 😂. I am always here if you ever need anything. Call or msg anytime. Happy 20th birthday Hajira ♥, enjoy your day and enjoy your offical non-teen years.`;
 
 type View = "menu" | "memories" | "letter" | "hopes" | "game";
 
@@ -163,9 +163,6 @@ const Index = () => {
                 >
                   <div className="mb-10">
                     <p className="font-hand text-2xl text-primary">🤍 things i hope for you</p>
-                    <h2 className="font-display text-4xl md:text-5xl font-semibold mt-1">
-                      small ones, real ones.
-                    </h2>
                   </div>
                   <Wishes />
                 </motion.section>

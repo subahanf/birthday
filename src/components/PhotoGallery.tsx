@@ -8,7 +8,15 @@ import prom2 from "@/assets/prom2.jpeg";
 import bike from "@/assets/bike.jpeg";
 import skate from "@/assets/ice.jpeg";
 import skate2 from "@/assets/ice2.jpeg";
-import bike2 from "@/assets/bike.MOV";
+import bike2 from "@/assets/bike.mov";
+import bowl from "@/assets/bowling.mov";
+import coffee from "@/assets/co.jpeg";
+import icecream from "@/assets/ic.jpeg";
+import bridge from "@/assets/br.jpeg";
+import last from "@/assets/la.jpeg";
+
+
+
 
 
 
@@ -21,11 +29,11 @@ interface PhotoSlot {
 
 const initialSlots: PhotoSlot[] = [
   { id: "1", caption: "prom night", rotation: -3, src: [prom1, prom2] },
-  { id: "2", caption: "bowling (i won)", rotation: 2, src: [imgHero] },
-  { id: "3", caption: "ice skating", rotation: -1, src: [skate, skate2] },
+  { id: "2", caption: "bowling", rotation: 2, src: [bowl] },
+  { id: "3", caption: "ice skating day", rotation: -1, src: [bridge, skate, skate2] },
   { id: "4", caption: "bike rides", rotation: 4, src: [bike, bike2] },
-  { id: "5", caption: "random day", rotation: -2, src: [imgHero] },
-  { id: "6", caption: "good times", rotation: 3, src: [imgGift] },
+  { id: "5", caption: "ice-cream/coffee runs", rotation: -2, src: [coffee, icecream] },
+  { id: "6", caption: "last day", rotation: 3, src: [last] },
 ];
 
 function PhotoFrame({ images, caption, rotation }: { images: string[]; caption: string; rotation: number }) {

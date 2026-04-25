@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 
 const hopes = [
   { emoji: "📚", text: "that uni keeps going well and you keep enjoying being there" },
-  { emoji: "☀️", text: "more random good days — the kind you don't plan that just turn out great" },
-  { emoji: "💬", text: "people around you that make you feel as easy to be around as you are" },
-  { emoji: "🤍", text: "that twenty feels a little lighter than the year before it" },
+  { emoji: "☀️", text: "that u don't let anyone get to u easily, just be urself" },
+  { emoji: "💬", text: "that u get everything u ask for (Inshallah)" },
+  { emoji: "🤍", text: "that ur twenty is better than the years before it" },
 ];
 
 export const Wishes = () => {
