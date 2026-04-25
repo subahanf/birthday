@@ -6,6 +6,11 @@ import imgGift from "@/assets/gift-box.png";
 import prom1 from "@/assets/prom.jpeg";
 import prom2 from "@/assets/prom2.jpeg";
 import bike from "@/assets/bike.jpeg";
+import skate from "@/assets/ice.jpeg";
+import skate2 from "@/assets/ice2.jpeg";
+import bike2 from "@/assets/bike.MOV";
+
+
 
 interface PhotoSlot {
   id: string;
@@ -17,8 +22,8 @@ interface PhotoSlot {
 const initialSlots: PhotoSlot[] = [
   { id: "1", caption: "prom night", rotation: -3, src: [prom1, prom2] },
   { id: "2", caption: "bowling (i won)", rotation: 2, src: [imgHero] },
-  { id: "3", caption: "ice skating", rotation: -1, src: [imgGift] },
-  { id: "4", caption: "bike rides", rotation: 4, src: [bike] },
+  { id: "3", caption: "ice skating", rotation: -1, src: [skate, skate2] },
+  { id: "4", caption: "bike rides", rotation: 4, src: [bike, bike2] },
   { id: "5", caption: "random day", rotation: -2, src: [imgHero] },
   { id: "6", caption: "good times", rotation: 3, src: [imgGift] },
 ];
@@ -34,16 +39,40 @@ function PhotoFrame({ images, caption, rotation }: { images: string[]; caption: 
       <div className="aspect-square bg-muted/60 overflow-hidden relative" style={{ transform: `rotate(${rotation}deg)` }}>
         {images && images.length > 0 && (
           <AnimatePresence mode="wait">
-            <motion.img
-              key={images[index]}
-              src={images[index]}
-              alt={caption}
-              className="w-full h-full object-cover absolute inset-0"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.35 }}
-            />
+            {(() => {
+              const src = images[index];
+              const isVideo = /\.(mp4|webm|mov)$/i.test(src);
+              if (isVideo) {
+                return (
+                  <motion.video
+                    key={src}
+                    src={src}
+                    className="w-full h-full object-cover absolute inset-0"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.35 }}
+                    playsInline
+                    muted
+                    loop
+                    controls
+                  />
+                );
+              }
+
+              return (
+                <motion.img
+                  key={src}
+                  src={src}
+                  alt={caption}
+                  className="w-full h-full object-cover absolute inset-0"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.35 }}
+                />
+              );
+            })()}
           </AnimatePresence>
         )}
       </div>
