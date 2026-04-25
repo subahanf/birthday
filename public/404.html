@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0;URL=/birthday/" />
+    <script>
+      // Preserve path by converting to hash route and redirecting to index
+      try {
+        const pathname = location.pathname.replace(/^\/+/, "");
+        const hash = pathname ? '#' + pathname + location.search + location.hash : location.hash || '';
+        location.replace('/birthday/' + hash);
+      } catch (e) {
+        location.replace('/birthday/');
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
